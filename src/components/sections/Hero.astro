@@ -37,11 +37,7 @@ import { buildWhatsappUrl } from "@/lib/constants";
       class="animate-fade-up mt-10 flex flex-col items-center gap-4 sm:flex-row"
       style="animation-delay: 0.2s;"
     >
-      <Button
-        href={buildWhatsappUrl()}
-        target="_blank"
-        ariaLabel="Falar com a agenciaFVX no WhatsApp"
-      >
+      <Button href={buildWhatsappUrl()} target="_blank">
         Fale com a gente
         <Icon name="whatsapp" class="h-4 w-4" />
       </Button>

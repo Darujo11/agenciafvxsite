@@ -35,7 +35,7 @@ const etapas = [
     {
       etapas.map((etapa, i) => (
         <div class="relative flex gap-5 lg:flex-col lg:gap-0">
-          <span class="font-display text-accent/50 text-3xl lg:mb-4">{etapa.numero}</span>
+          <span class="font-display text-accent text-3xl lg:mb-4">{etapa.numero}</span>
           <div class:list={["relative", i < etapas.length - 1 && "lg:pr-6"]}>
             <h3 class="font-display text-text text-lg">{etapa.nome}</h3>
             <p class="text-text-muted mt-2 text-sm leading-relaxed">{etapa.descricao}</p>

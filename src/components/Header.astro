@@ -10,7 +10,7 @@ import { ANCORAS, buildWhatsappUrl } from "@/lib/constants";
 <header class="border-border/60 bg-bg/70 fixed inset-x-0 top-0 z-30 border-b backdrop-blur-md">
   <Container class="flex items-center justify-between py-5">
     <a href="/" class="flex items-center gap-2.5">
-      <Image src={logoMark} alt="" width={28} height={28} class="h-7 w-7" />
+      <Image src={logoMark} alt="" width={56} height={56} class="h-7 w-7" />
       <span class="font-display text-text text-lg tracking-tight">agenciaFVX</span>
     </a>
 
@@ -25,13 +25,7 @@ import { ANCORAS, buildWhatsappUrl } from "@/lib/constants";
     </nav>
 
     <div class="hidden lg:block">
-      <Button
-        href={buildWhatsappUrl()}
-        target="_blank"
-        ariaLabel="Falar com a agenciaFVX no WhatsApp"
-      >
-        Fale com a gente
-      </Button>
+      <Button href={buildWhatsappUrl()} target="_blank"> Fale com a gente </Button>
     </div>
 
     <MobileNav
