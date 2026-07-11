@@ -1,0 +1,168 @@
+---
+import type { IconName } from "@/lib/icons";
+
+interface Props {
+  name: IconName;
+  class?: string;
+}
+
+const { name, class: className = "h-6 w-6" } = Astro.props;
+---
+
+{
+  name === "site" && (
+    <svg viewBox="0 0 24 24" fill="none" class={className} aria-hidden="true">
+      <rect x="3" y="4.5" width="18" height="15" rx="2" stroke="currentColor" stroke-width="1.5" />
+      <path d="M3 8.5h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <path
+        d="M7 6.3h.01M9.5 6.3h.01"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </svg>
+  )
+}
+{
+  name === "landing" && (
+    <svg viewBox="0 0 24 24" fill="none" class={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="8.25" stroke="currentColor" stroke-width="1.5" />
+      <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5" />
+      <circle cx="12" cy="12" r="0.75" fill="currentColor" />
+    </svg>
+  )
+}
+{
+  name === "app" && (
+    <svg viewBox="0 0 24 24" fill="none" class={className} aria-hidden="true">
+      <path
+        d="M12 3.5 4 8v8l8 4.5 8-4.5V8l-8-4.5Z"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M4 8l8 4.5 8-4.5M12 12.5V21"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linejoin="round"
+      />
+    </svg>
+  )
+}
+{
+  name === "trafego" && (
+    <svg viewBox="0 0 24 24" fill="none" class={className} aria-hidden="true">
+      <path
+        d="M4 17.5 9.5 12l3.5 3 6.5-7.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M15.5 7h4v4"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  )
+}
+{
+  name === "automacao" && (
+    <svg viewBox="0 0 24 24" fill="none" class={className} aria-hidden="true">
+      <path
+        d="M13 3 5 13.5h5.5L11 21l8-10.5h-5.5L13 3Z"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linejoin="round"
+      />
+    </svg>
+  )
+}
+{
+  name === "chatbot" && (
+    <svg viewBox="0 0 24 24" fill="none" class={className} aria-hidden="true">
+      <rect x="4" y="5.5" width="16" height="11" rx="4" stroke="currentColor" stroke-width="1.5" />
+      <path d="M9 20.5 12 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <path
+        d="M8.5 11h.01M15.5 11h.01"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    </svg>
+  )
+}
+{
+  name === "whatsapp" && (
+    <svg viewBox="0 0 24 24" fill="none" class={className} aria-hidden="true">
+      <path
+        d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.13A8.5 8.5 0 1 0 12 3.5Z"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M8.8 8.6c.2-.5.5-.5.7-.5h.5c.15 0 .35 0 .5.4.2.5.6 1.5.65 1.6.05.1.1.25 0 .4-.1.2-.15.3-.3.45-.15.15-.3.35-.45.45-.15.1-.3.25-.15.5.15.25.7 1.15 1.5 1.85 1 .9 1.85 1.2 2.1 1.35.25.15.4.1.55-.05.15-.15.6-.7.75-.95.15-.25.3-.2.5-.1.2.05 1.25.6 1.45.7.2.1.35.15.4.25.05.15.05.75-.2 1.45-.25.65-1.4 1.25-1.95 1.3-.5.05-1.1.1-3.55-.75-3-.9-4.9-3.95-5.05-4.15-.15-.2-1.2-1.6-1.2-3.05 0-1.45.75-2.15 1-2.45Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+{
+  name === "instagram" && (
+    <svg viewBox="0 0 24 24" fill="none" class={className} aria-hidden="true">
+      <rect
+        x="3.5"
+        y="3.5"
+        width="17"
+        height="17"
+        rx="5"
+        stroke="currentColor"
+        stroke-width="1.5"
+      />
+      <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5" />
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" />
+    </svg>
+  )
+}
+{
+  name === "arrow-right" && (
+    <svg viewBox="0 0 24 24" fill="none" class={className} aria-hidden="true">
+      <path
+        d="M4.5 12h15M13.5 6l6 6-6 6"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  )
+}
+{
+  name === "menu" && (
+    <svg viewBox="0 0 24 24" fill="none" class={className} aria-hidden="true">
+      <path
+        d="M4 7h16M4 12h16M4 17h16"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </svg>
+  )
+}
+{
+  name === "close" && (
+    <svg viewBox="0 0 24 24" fill="none" class={className} aria-hidden="true">
+      <path
+        d="M6 6l12 12M18 6 6 18"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </svg>
+  )
+}

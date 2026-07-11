@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import Container from "@/components/Container.astro";
+import Button from "@/components/Button.astro";
+import MobileNav from "@/components/MobileNav.tsx";
+import logoMark from "@/assets/brand/logo-mark.png";
+import { ANCORAS, buildWhatsappUrl } from "@/lib/constants";
+---
+
+<header class="border-border/60 bg-bg/70 fixed inset-x-0 top-0 z-30 border-b backdrop-blur-md">
+  <Container class="flex items-center justify-between py-5">
+    <a href="/" class="flex items-center gap-2.5">
+      <Image src={logoMark} alt="" width={28} height={28} class="h-7 w-7" />
+      <span class="font-display text-text text-lg tracking-tight">agenciaFVX</span>
+    </a>
+
+    <nav class="hidden items-center gap-8 lg:flex">
+      {
+        ANCORAS.map((ancora) => (
+          <a href={ancora.href} class="text-text-muted hover:text-text text-sm transition-colors">
+            {ancora.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="hidden lg:block">
+      <Button
+        href={buildWhatsappUrl()}
+        target="_blank"
+        ariaLabel="Falar com a agenciaFVX no WhatsApp"
+      >
+        Fale com a gente
+      </Button>
+    </div>
+
+    <MobileNav
+      client:load
+      ancoras={ANCORAS}
+      whatsappUrl={buildWhatsappUrl()}
+      whatsappLabel="Fale com a gente"
+    />
+  </Container>
+</header>

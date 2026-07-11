@@ -1,0 +1,32 @@
+---
+import Container from "@/components/Container.astro";
+import Button from "@/components/Button.astro";
+import Icon from "@/components/Icon.astro";
+import { buildWhatsappUrl } from "@/lib/constants";
+---
+
+<section id="contato" class="relative flex min-h-[70vh] items-center overflow-hidden py-24">
+  <div
+    class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[40rem] bg-[radial-gradient(ellipse_60%_60%_at_50%_100%,rgba(6,182,196,0.18),transparent)]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <Container class="flex flex-col items-center text-center">
+    <h2 class="font-display text-text text-4xl text-balance lg:text-5xl">
+      Pronto pra tirar seu projeto do papel?
+    </h2>
+    <p class="text-text-muted mt-6 max-w-lg">
+      Manda uma mensagem agora e a gente já começa a conversa sobre o seu projeto.
+    </p>
+    <Button
+      href={buildWhatsappUrl()}
+      target="_blank"
+      class="mt-10 px-10 py-4 text-base"
+      ariaLabel="Falar com a agenciaFVX no WhatsApp"
+    >
+      Começar agora
+      <Icon name="whatsapp" class="h-5 w-5" />
+    </Button>
+  </Container>
+</section>

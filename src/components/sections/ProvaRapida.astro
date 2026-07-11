@@ -1,0 +1,11 @@
+---
+const afirmacoes = ["Resposta em minutos", "Projetos sob medida", "IA aplicada a negócios reais"];
+---
+
+<div class="border-border bg-surface/40 border-y py-8">
+  <div
+    class="mx-auto flex max-w-6xl flex-col flex-wrap items-center justify-center gap-4 px-6 text-center sm:flex-row sm:gap-x-12 sm:gap-y-4 lg:px-8"
+  >
+    {afirmacoes.map((afirmacao) => <p class="text-text-muted text-sm font-medium">{afirmacao}</p>)}
+  </div>
+</div>

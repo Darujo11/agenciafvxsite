@@ -1,0 +1,99 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/Container.astro";
+import { INSTAGRAM_URL, WHATSAPP_NUMBER_FORMATADO, buildWhatsappUrl } from "@/lib/constants";
+
+const atualizadoEm = "11 de julho de 2026";
+---
+
+<Layout
+  title="Política de privacidade"
+  description="Como a agenciaFVX trata dados pessoais neste site, em conformidade com a LGPD."
+>
+  <main class="pt-40 pb-24">
+    <Container class="max-w-2xl">
+      <h1 class="font-display text-text text-3xl lg:text-4xl">Política de privacidade</h1>
+      <p class="text-text-muted mt-4 text-sm">Última atualização: {atualizadoEm}</p>
+
+      <div class="text-text-muted mt-12 flex flex-col gap-8 text-sm leading-relaxed">
+        <section>
+          <h2 class="font-display text-text text-lg">1. Quem somos</h2>
+          <p class="mt-3">
+            Este site é operado pela agenciaFVX. Esta política explica como tratamos dados pessoais
+            de quem visita nosso site, em conformidade com a Lei Geral de Proteção de Dados (Lei nº
+            13.709/2018 — LGPD).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-text text-lg">2. Quais dados coletamos</h2>
+          <p class="mt-3">
+            Este site é estático: não tem formulário de cadastro, login ou banco de dados próprio, e
+            não usa cookies de rastreamento nem pixels de terceiros nesta fase. Não coletamos,
+            armazenamos ou processamos dados pessoais diretamente através deste site.
+          </p>
+          <p class="mt-3">
+            Quando você clica em um botão de contato, é redirecionado para o WhatsApp ou Instagram —
+            nesse momento, o tratamento dos seus dados passa a ser regido pela política de
+            privacidade dessas plataformas (Meta), não pela nossa. Recomendamos a leitura das
+            políticas delas.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-text text-lg">3. Campanhas de tráfego pago</h2>
+          <p class="mt-3">
+            Se no futuro utilizarmos pixels de rastreamento (Meta Ads, Google Ads) para medir o
+            desempenho de campanhas, essa coleta só começará após atualizarmos esta política e
+            obtermos seu consentimento, conforme exigido pela LGPD.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-text text-lg">4. Seus direitos</h2>
+          <p class="mt-3">
+            A LGPD garante a você o direito de confirmar a existência de tratamento, acessar,
+            corrigir, anonimizar ou eliminar dados pessoais, entre outros. Como não coletamos dados
+            através deste site, qualquer solicitação relacionada a conversas iniciadas pelo WhatsApp
+            pode ser feita diretamente pelo número {WHATSAPP_NUMBER_FORMATADO}.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-text text-lg">5. Contato</h2>
+          <p class="mt-3">
+            Dúvidas sobre esta política podem ser enviadas pelo{" "}
+            <a
+              href={buildWhatsappUrl(
+                "Olá! Tenho uma dúvida sobre a política de privacidade da agenciaFVX.",
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent hover:text-accent-soft"
+            >
+              WhatsApp
+            </a>
+            {" "}ou pelo{" "}
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent hover:text-accent-soft"
+            >
+              Instagram
+            </a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-text text-lg">6. Alterações desta política</h2>
+          <p class="mt-3">
+            Esta política pode ser atualizada conforme o site evolui — por exemplo, ao adicionarmos
+            formulários, CMS ou pixels de campanha. A data no topo desta página sempre reflete a
+            versão mais recente.
+          </p>
+        </section>
+      </div>
+    </Container>
+  </main>
+</Layout>

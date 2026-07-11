@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import Section from "@/components/Section.astro";
+import Card from "@/components/Card.astro";
+import Icon from "@/components/Icon.astro";
+import type { IconName } from "@/lib/icons";
+import { buildWhatsappUrl } from "@/lib/constants";
+
+const servicos = (await getCollection("servicos")).sort((a, b) => a.data.ordem - b.data.ordem);
+---
+
+<Section id="servicos">
+  <div class="mx-auto max-w-2xl text-center">
+    <h2 class="font-display text-text text-3xl lg:text-4xl">Serviços</h2>
+    <p class="text-text-muted mt-4">
+      Presença digital, produtos sob medida, crescimento mensurável e inteligência aplicada — o que
+      seu negócio precisa pra ir além.
+    </p>
+  </div>
+
+  <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      servicos.map((servico) => (
+        <Card>
+          <Icon name={servico.data.icone as IconName} class="text-accent h-7 w-7" />
+          <h3 class="font-display text-text mt-6 text-xl">{servico.data.nome}</h3>
+          <p class="text-text-muted mt-3 text-sm leading-relaxed">{servico.data.resumo}</p>
+          <a
+            href={buildWhatsappUrl(servico.data.whatsappMensagem)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-accent group-hover:text-accent-soft mt-6 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
+          >
+            Começar agora
+            <Icon name="arrow-right" class="h-3.5 w-3.5" />
+          </a>
+        </Card>
+      ))
+    }
+  </div>
+</Section>

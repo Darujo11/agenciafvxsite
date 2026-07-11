@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import Section from "@/components/Section.astro";
+import Card from "@/components/Card.astro";
+import Button from "@/components/Button.astro";
+import { buildWhatsappUrl } from "@/lib/constants";
+
+const cases = (await getCollection("cases")).sort(
+  (a, b) => b.data.publicadoEm.valueOf() - a.data.publicadoEm.valueOf(),
+);
+---
+
+<Section id="projetos">
+  <div class="mx-auto max-w-2xl text-center">
+    <h2 class="font-display text-text text-3xl lg:text-4xl">Projetos</h2>
+  </div>
+
+  {
+    cases.length === 0 ? (
+      <div class="border-border mx-auto mt-16 flex max-w-xl flex-col items-center gap-6 rounded-2xl border border-dashed px-8 py-16 text-center">
+        <p class="font-display text-text text-xl">Portfólio em curadoria.</p>
+        <p class="text-text-muted text-sm">
+          Estamos organizando os cases mais recentes. Peça exemplos direto no WhatsApp.
+        </p>
+        <Button
+          href={buildWhatsappUrl("Olá! Quero ver exemplos de projetos da agenciaFVX.")}
+          target="_blank"
+        >
+          Pedir exemplos
+        </Button>
+      </div>
+    ) : (
+      <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {cases.map((c) => (
+          <Card>
+            <p class="text-accent text-xs font-medium tracking-wide uppercase">{c.data.cliente}</p>
+            <h3 class="font-display text-text mt-2 text-xl">{c.data.titulo}</h3>
+            <p class="text-text-muted mt-3 text-sm leading-relaxed">{c.data.descricao}</p>
+          </Card>
+        ))}
+      </div>
+    )
+  }
+</Section>

@@ -1,0 +1,17 @@
+---
+import Container from "@/components/Container.astro";
+
+interface Props {
+  id?: string;
+  class?: string;
+  containerClass?: string;
+}
+
+const { id, class: className = "", containerClass = "" } = Astro.props;
+---
+
+<section id={id} class:list={["py-24 lg:py-32", className]}>
+  <Container class={containerClass}>
+    <slot />
+  </Container>
+</section>

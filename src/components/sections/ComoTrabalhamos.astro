@@ -1,0 +1,53 @@
+---
+import Section from "@/components/Section.astro";
+
+const etapas = [
+  {
+    numero: "01",
+    nome: "Diagnóstico",
+    descricao:
+      "Entendemos seu negócio, seu processo e onde a tecnologia trava ou destrava resultado.",
+  },
+  {
+    numero: "02",
+    nome: "Proposta",
+    descricao: "Escopo claro, prazo definido e investimento sem letra miúda.",
+  },
+  {
+    numero: "03",
+    nome: "Execução",
+    descricao: "Construímos com você acompanhando cada etapa, não só no final.",
+  },
+  {
+    numero: "04",
+    nome: "Acompanhamento",
+    descricao: "Depois de no ar, a gente continua por perto pra ajustar e evoluir.",
+  },
+];
+---
+
+<Section id="como-trabalhamos" class="bg-surface/30">
+  <div class="mx-auto max-w-2xl text-center">
+    <h2 class="font-display text-text text-3xl lg:text-4xl">Como trabalhamos</h2>
+  </div>
+
+  <div class="mt-16 grid gap-10 lg:grid-cols-4 lg:gap-6">
+    {
+      etapas.map((etapa, i) => (
+        <div class="relative flex gap-5 lg:flex-col lg:gap-0">
+          <span class="font-display text-accent/50 text-3xl lg:mb-4">{etapa.numero}</span>
+          <div class:list={["relative", i < etapas.length - 1 && "lg:pr-6"]}>
+            <h3 class="font-display text-text text-lg">{etapa.nome}</h3>
+            <p class="text-text-muted mt-2 text-sm leading-relaxed">{etapa.descricao}</p>
+            {i < etapas.length - 1 && (
+              <span
+                class="bg-border absolute top-2 -right-3 hidden h-px w-6 lg:block"
+                aria-hidden="true"
+              />
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Section>

@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import Container from "@/components/Container.astro";
+import Icon from "@/components/Icon.astro";
+import logoMark from "@/assets/brand/logo-mark.png";
+import {
+  ANCORAS,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  WHATSAPP_NUMBER_FORMATADO,
+  buildWhatsappUrl,
+} from "@/lib/constants";
+
+const ano = new Date().getFullYear();
+---
+
+<footer class="border-border border-t py-16">
+  <Container class="flex flex-col gap-12">
+    <div class="flex flex-col gap-10 md:flex-row md:justify-between">
+      <div class="max-w-sm">
+        <div class="flex items-center gap-2">
+          <Image src={logoMark} alt="" width={24} height={24} class="h-6 w-6" />
+          <p class="font-display text-text text-lg">agenciaFVX</p>
+        </div>
+        <p class="text-text-muted mt-3 text-sm">
+          Presença, crescimento e inteligência digital pro seu negócio ir pra outro nível.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-3 text-sm">
+        <a
+          href={buildWhatsappUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-text-muted hover:text-text flex items-center gap-2 transition-colors"
+        >
+          <Icon name="whatsapp" class="h-4 w-4" />
+          {WHATSAPP_NUMBER_FORMATADO}
+        </a>
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-text-muted hover:text-text flex items-center gap-2 transition-colors"
+        >
+          <Icon name="instagram" class="h-4 w-4" />
+          {INSTAGRAM_HANDLE}
+        </a>
+      </div>
+
+      <nav class="flex flex-col gap-3 text-sm">
+        {
+          ANCORAS.map((ancora) => (
+            <a href={ancora.href} class="text-text-muted hover:text-text transition-colors">
+              {ancora.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <div
+      class="border-border text-text-muted flex flex-col gap-4 border-t pt-8 text-xs md:flex-row md:items-center md:justify-between"
+    >
+      <p>© {ano} agenciaFVX</p>
+      <a href="/privacidade" class="hover:text-text transition-colors">Política de privacidade</a>
+    </div>
+  </Container>
+</footer>

@@ -1,0 +1,51 @@
+---
+import Container from "@/components/Container.astro";
+import Button from "@/components/Button.astro";
+import Icon from "@/components/Icon.astro";
+import { buildWhatsappUrl } from "@/lib/constants";
+---
+
+<section id="top" class="relative overflow-hidden pt-40 pb-28 lg:pt-52 lg:pb-36">
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[60rem] bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,rgba(6,182,196,0.22),transparent)]"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-0 -z-10 opacity-[0.03]"
+    style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 64px 64px;"
+    aria-hidden="true"
+  >
+  </div>
+
+  <Container class="flex flex-col items-center text-center">
+    <h1
+      class="animate-fade-up font-display text-hero text-text max-w-4xl leading-[1.05] tracking-tight text-balance"
+    >
+      Seu negócio, em outro nível digital.
+    </h1>
+
+    <p
+      class="animate-fade-up text-text-muted mt-8 max-w-2xl text-lg text-balance lg:text-xl"
+      style="animation-delay: 0.1s;"
+    >
+      Presença que gera confiança, crescimento que se mede e inteligência que trabalha por você —
+      tudo em um só lugar.
+    </p>
+
+    <div
+      class="animate-fade-up mt-10 flex flex-col items-center gap-4 sm:flex-row"
+      style="animation-delay: 0.2s;"
+    >
+      <Button
+        href={buildWhatsappUrl()}
+        target="_blank"
+        ariaLabel="Falar com a agenciaFVX no WhatsApp"
+      >
+        Fale com a gente
+        <Icon name="whatsapp" class="h-4 w-4" />
+      </Button>
+      <Button href="/#servicos" variant="secondary"> Ver serviços </Button>
+    </div>
+  </Container>
+</section>

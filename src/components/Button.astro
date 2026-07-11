@@ -1,0 +1,35 @@
+---
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "ghost";
+  class?: string;
+  target?: "_blank";
+  ariaLabel?: string;
+}
+
+const { href, variant = "primary", class: className = "", target, ariaLabel } = Astro.props;
+
+const base =
+  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-2 focus-visible:outline-offset-2";
+
+const variants = {
+  primary:
+    "bg-accent text-bg hover:bg-accent-soft hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_var(--color-accent)]",
+  secondary: "border border-border text-text hover:border-accent hover:text-accent",
+  ghost: "text-text-muted hover:text-text",
+};
+
+const rel = target === "_blank" ? "noopener noreferrer" : undefined;
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+  href={href}
+  target={target}
+  rel={rel}
+  aria-label={ariaLabel}
+  type={href ? undefined : "button"}
+  class:list={[base, variants[variant], className]}
+>
+  <slot />
+</Tag>

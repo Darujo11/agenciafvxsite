@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import Button from "@/components/Button.astro";
+import logoMark from "@/assets/brand/logo-mark.png";
+import { buildWhatsappUrl } from "@/lib/constants";
+---
+
+<Layout
+  title="Página não encontrada"
+  description="Essa página não existe. Volte pro início do site da agenciaFVX."
+  noindex={true}
+  chrome={false}
+>
+  <main
+    class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center"
+  >
+    <div
+      class="pointer-events-none absolute inset-x-0 top-1/3 -z-10 h-[40rem] bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(6,182,196,0.18),transparent)]"
+      aria-hidden="true"
+    >
+    </div>
+
+    <a href="/" class="flex items-center gap-2.5">
+      <Image src={logoMark} alt="" width={28} height={28} class="h-7 w-7" />
+      <span class="font-display text-text text-lg tracking-tight">agenciaFVX</span>
+    </a>
+
+    <h1 class="font-display text-text mt-10 text-6xl lg:text-7xl">404</h1>
+    <p class="text-text-muted mt-4 max-w-md">
+      Essa página não existe. Mas seu projeto ainda pode sair do papel.
+    </p>
+
+    <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row">
+      <Button href="/">Voltar pro início</Button>
+      <Button href={buildWhatsappUrl()} target="_blank" variant="secondary">
+        Fale com a gente
+      </Button>
+    </div>
+  </main>
+</Layout>
