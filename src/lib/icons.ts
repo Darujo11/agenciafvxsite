@@ -11,4 +11,7 @@ export type IconName =
   | "arrow-right"
   | "external-link"
   | "menu"
-  | "close";
+  | "close"
+  | "clock"
+  | "target-frame"
+  | "spark";

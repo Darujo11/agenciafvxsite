@@ -1,17 +1,25 @@
 ---
-const afirmacoes = ["Resposta em minutos", "Projetos sob medida", "IA aplicada a negócios reais"];
+import Icon from "@/components/Icon.astro";
+import type { IconName } from "@/lib/icons";
+
+const afirmacoes: { icone: IconName; texto: string }[] = [
+  { icone: "clock", texto: "Resposta em minutos" },
+  { icone: "target-frame", texto: "Projetos sob medida" },
+  { icone: "spark", texto: "IA aplicada a negócios reais" },
+];
 ---
 
 <div class="border-border bg-surface/40 border-y py-8">
   <div
-    class="mx-auto flex max-w-6xl flex-col flex-wrap items-center justify-center gap-4 px-6 text-center sm:flex-row sm:gap-x-12 sm:gap-y-4 lg:px-8"
+    class="sm:divide-border mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 text-center sm:flex-row sm:justify-center sm:gap-0 sm:divide-x lg:px-8"
     data-reveal-group
   >
     {
-      afirmacoes.map((afirmacao) => (
-        <p class="text-text-muted text-sm font-medium" data-reveal>
-          {afirmacao}
-        </p>
+      afirmacoes.map((item) => (
+        <div class="flex items-center gap-2.5 sm:px-10" data-reveal>
+          <Icon name={item.icone} class="text-accent h-4 w-4 shrink-0" />
+          <p class="text-text-muted text-sm font-medium">{item.texto}</p>
+        </div>
       ))
     }
   </div>
