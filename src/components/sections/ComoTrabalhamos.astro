@@ -39,26 +39,139 @@ const etapas = [
   </div>
 
   <div class="mx-auto max-w-2xl text-center" data-reveal>
-    <h2 class="font-display text-text text-3xl lg:text-4xl">Como trabalhamos</h2>
+    <p class="text-accent text-xs font-medium tracking-widest uppercase">Processo</p>
+    <h2 class="font-display text-text mt-4 text-3xl lg:text-4xl">Como trabalhamos</h2>
   </div>
 
-  <div class="mt-16 grid gap-10 lg:grid-cols-4 lg:gap-6" data-reveal-group>
-    {
-      etapas.map((etapa, i) => (
-        <div class="relative flex gap-5 lg:flex-col lg:gap-0" data-reveal>
-          <span class="font-display text-accent text-3xl lg:mb-4">{etapa.numero}</span>
-          <div class:list={["relative", i < etapas.length - 1 && "lg:pr-6"]}>
+  <div class="processo-rail relative mt-20 lg:mt-24" data-reveal-group id="processo-rail">
+    <div class="rail-track" aria-hidden="true"></div>
+    <div class="rail-fill" data-rail-fill aria-hidden="true"></div>
+
+    <div class="grid gap-12 lg:grid-cols-4 lg:gap-8">
+      {
+        etapas.map((etapa, i) => (
+          <div class="step" data-reveal>
+            <span class="node">{etapa.numero}</span>
             <h3 class="font-display text-text text-lg">{etapa.nome}</h3>
             <p class="text-text-muted mt-2 text-sm leading-relaxed">{etapa.descricao}</p>
-            {i < etapas.length - 1 && (
-              <span
-                class="bg-border absolute top-2 -right-3 hidden h-px w-6 lg:block"
-                aria-hidden="true"
-              />
-            )}
           </div>
-        </div>
-      ))
-    }
+        ))
+      }
+    </div>
   </div>
 </Section>
+
+<script>
+  const rail = document.getElementById("processo-rail");
+  const fill = rail?.querySelector<HTMLElement>("[data-rail-fill]");
+
+  if (rail && fill) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      fill.classList.add("is-filled");
+    } else {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            fill.classList.add("is-filled");
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.3 }
+      );
+      observer.observe(rail);
+    }
+  }
+</script>
+
+<style>
+  .rail-track,
+  .rail-fill {
+    position: absolute;
+    top: 0;
+    left: 19px;
+    width: 1px;
+    height: 100%;
+  }
+
+  .rail-track {
+    background: var(--color-border);
+  }
+
+  .rail-fill {
+    background: linear-gradient(to bottom, var(--color-accent), var(--color-accent-soft));
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .rail-fill.is-filled {
+    transform: scaleY(1);
+  }
+
+  .step {
+    position: relative;
+    padding-left: 3rem;
+  }
+
+  .node {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    color: var(--color-accent);
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .step:hover .node {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 5px rgba(6, 182, 196, 0.12);
+    transform: scale(1.06);
+  }
+
+  @media (min-width: 1024px) {
+    .rail-track,
+    .rail-fill {
+      top: 19px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+    }
+
+    .rail-fill {
+      background: linear-gradient(to right, var(--color-accent), var(--color-accent-soft));
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+
+    .rail-fill.is-filled {
+      transform: scaleX(1);
+    }
+
+    .step {
+      padding-left: 0;
+      padding-top: 3.5rem;
+      text-align: center;
+    }
+
+    .node {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .step:hover .node {
+      transform: translateX(-50%) scale(1.06);
+    }
+  }
+</style>

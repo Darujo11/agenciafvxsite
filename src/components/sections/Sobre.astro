@@ -13,7 +13,18 @@ const credenciais = [
 ];
 ---
 
-<Section id="sobre">
+<Section id="sobre" class="overflow-hidden">
+  <div slot="background" class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+    <img
+      src="/backgrounds/grid-tech.jpg"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="h-full w-full object-cover opacity-[0.12] mix-blend-screen"
+    />
+    <div class="from-bg via-bg/60 to-bg absolute inset-0 bg-gradient-to-b"></div>
+  </div>
+
   <div class="grid items-center gap-14 lg:grid-cols-2 lg:gap-20" data-reveal-group>
     <div class="order-last lg:order-first" data-reveal>
       <p class="text-accent text-xs font-medium tracking-widest uppercase">
