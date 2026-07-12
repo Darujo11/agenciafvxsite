@@ -5,18 +5,34 @@ import Icon from "@/components/Icon.astro";
 import { buildWhatsappUrl } from "@/lib/constants";
 ---
 
-<section id="contato" class="relative flex min-h-[70vh] items-center overflow-hidden py-24">
+<section
+  id="contato"
+  class="relative isolate flex min-h-[70vh] items-center overflow-hidden py-24"
+>
+  <div class="absolute inset-0 -z-30 bg-bg" aria-hidden="true">
+    <video
+      id="cta-video"
+      class="h-full w-full origin-bottom scale-[1.42] object-cover lg:origin-center lg:scale-100"
+      poster="/videos/cta-final-poster.jpg"
+      muted
+      loop
+      playsinline
+      preload="none"
+      aria-hidden="true"
+    >
+    </video>
+  </div>
+
+  <div class="pointer-events-none absolute inset-0 -z-20 bg-bg/55" aria-hidden="true"></div>
   <div
-    class="pointer-events-none absolute inset-x-0 bottom-0 -z-20 h-[40rem] opacity-[0.16] mix-blend-screen"
+    class="pointer-events-none absolute inset-x-0 top-0 -z-20 h-1/3 bg-gradient-to-b from-bg to-transparent"
     aria-hidden="true"
   >
-    <img
-      src="/backgrounds/grid-tech.jpg"
-      alt=""
-      loading="lazy"
-      decoding="async"
-      class="h-full w-full object-cover object-bottom"
-    />
+  </div>
+  <div
+    class="pointer-events-none absolute inset-x-0 bottom-0 -z-20 h-1/3 bg-gradient-to-t from-bg to-transparent"
+    aria-hidden="true"
+  >
   </div>
   <div
     class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[40rem] bg-[radial-gradient(ellipse_60%_60%_at_50%_100%,rgba(6,182,196,0.18),transparent)]"
@@ -42,3 +58,50 @@ import { buildWhatsappUrl } from "@/lib/constants";
     </Button>
   </Container>
 </section>
+
+<script>
+  const section = document.getElementById("contato");
+  const video = document.getElementById("cta-video") as HTMLVideoElement | null;
+
+  if (section && video) {
+    const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const conn = (
+      navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }
+    ).connection;
+    const connectionOK = !conn?.saveData && !["slow-2g", "2g"].includes(conn?.effectiveType ?? "");
+
+    if (motionOK && connectionOK) {
+      let loaded = false;
+      const loadSource = () => {
+        if (loaded) return;
+        loaded = true;
+        const source = document.createElement("source");
+        source.src = "/videos/cta-final.mp4";
+        source.type = "video/mp4";
+        video.appendChild(source);
+        video.load();
+      };
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            loadSource();
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        },
+        { threshold: 0, rootMargin: "200px 0px" }
+      );
+      observer.observe(section);
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          video.pause();
+        } else if (section.getBoundingClientRect().top < window.innerHeight) {
+          video.play().catch(() => {});
+        }
+      });
+    }
+  }
+</script>
