@@ -3,5 +3,7 @@
   "nome": "Landing pages",
   "resumo": "Páginas construídas com um único objetivo: transformar visitante em cliente.",
   "icone": "landing",
-  "whatsappMensagem": "Olá! Quero falar sobre uma landing page para minha campanha."
+  "whatsappMensagem": "Olá! Quero falar sobre uma landing page para minha campanha.",
+  "video": "/videos/servicos/landing-pages.mp4",
+  "videoPoster": "/videos/servicos/landing-pages-poster.jpg"
 }

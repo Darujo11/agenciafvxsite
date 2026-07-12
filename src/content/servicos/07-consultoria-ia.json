@@ -1,0 +1,9 @@
+{
+  "ordem": 7,
+  "nome": "Consultoria de IA",
+  "resumo": "Sua empresa não precisa de mais uma reunião sobre IA. Precisa de um diagnóstico claro e um plano de implementação que sai do papel.",
+  "icone": "consultoria",
+  "whatsappMensagem": "Olá! Quero falar sobre consultoria de IA para minha empresa.",
+  "video": "/videos/servicos/consultoria-ia.mp4",
+  "videoPoster": "/videos/servicos/consultoria-ia-poster.jpg"
+}

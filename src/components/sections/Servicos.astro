@@ -10,18 +10,32 @@ const servicos = (await getCollection("servicos")).sort((a, b) => a.data.ordem -
 ---
 
 <Section id="servicos">
-  <div class="mx-auto max-w-2xl text-center">
+  <div class="mx-auto max-w-2xl text-center" data-reveal>
     <h2 class="font-display text-text text-3xl lg:text-4xl">Serviços</h2>
     <p class="text-text-muted mt-4">
-      Presença digital, produtos sob medida, crescimento mensurável e inteligência aplicada — o que
-      seu negócio precisa pra ir além.
+      Presença digital, produtos sob medida, crescimento mensurável e inteligência aplicada.
+      Escolha por onde seu negócio precisa começar.
     </p>
   </div>
 
-  <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
     {
       servicos.map((servico) => (
-        <Card>
+        <Card spotlight reveal>
+          {servico.data.video && (
+            <div class="border-border -mx-8 -mt-8 mb-6 overflow-hidden border-b">
+              <video
+                class="aspect-video w-full object-cover"
+                poster={servico.data.videoPoster}
+                muted
+                loop
+                playsinline
+                preload="none"
+                data-service-video
+                data-src={servico.data.video}
+              />
+            </div>
+          )}
           <Icon name={servico.data.icone as IconName} class="text-accent h-7 w-7" />
           <h3 class="font-display text-text mt-6 text-xl">{servico.data.nome}</h3>
           <p class="text-text-muted mt-3 text-sm leading-relaxed">{servico.data.resumo}</p>
@@ -31,7 +45,7 @@ const servicos = (await getCollection("servicos")).sort((a, b) => a.data.ordem -
             rel="noopener noreferrer"
             class="text-accent group-hover:text-accent-soft mt-6 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
           >
-            Começar agora
+            Falar sobre isso
             <Icon name="arrow-right" class="h-3.5 w-3.5" />
           </a>
         </Card>
@@ -39,3 +53,55 @@ const servicos = (await getCollection("servicos")).sort((a, b) => a.data.ordem -
     }
   </div>
 </Section>
+
+<script>
+  const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const conn = (
+    navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }
+  ).connection;
+  const connectionOK = !conn?.saveData && !["slow-2g", "2g"].includes(conn?.effectiveType ?? "");
+
+  if (motionOK && connectionOK) {
+    const videos = document.querySelectorAll<HTMLVideoElement>("[data-service-video]");
+
+    const loadSource = (video: HTMLVideoElement) => {
+      if (video.dataset.loaded) return;
+      const src = video.dataset.src;
+      if (!src) return;
+      const source = document.createElement("source");
+      source.src = src;
+      source.type = "video/mp4";
+      video.appendChild(source);
+      video.load();
+      video.dataset.loaded = "true";
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const video = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) {
+            loadSource(video);
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        }
+      },
+      { threshold: 0.35 }
+    );
+
+    videos.forEach((video) => observer.observe(video));
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        videos.forEach((video) => video.pause());
+      } else {
+        videos.forEach((video) => {
+          const rect = video.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) video.play().catch(() => {});
+        });
+      }
+    });
+  }
+</script>

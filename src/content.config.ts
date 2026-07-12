@@ -9,6 +9,8 @@ const servicos = defineCollection({
     resumo: z.string(),
     icone: z.string(),
     whatsappMensagem: z.string(),
+    video: z.string().optional(),
+    videoPoster: z.string().optional(),
   }),
 });
 

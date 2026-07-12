@@ -1,0 +1,10 @@
+{
+  "titulo": "Automações que vendem no automático",
+  "cliente": "Infoproduto · Automação",
+  "servicosRelacionados": ["Landing pages"],
+  "descricao": "Hero com luz que acompanha o cursor e prova social animada — construído pra prender atenção nos primeiros 3 segundos.",
+  "imagem": "/projetos/base-lp02.jpg",
+  "link": "https://base-lp02.vercel.app/",
+  "destaque": true,
+  "publicadoEm": "2026-06-10"
+}

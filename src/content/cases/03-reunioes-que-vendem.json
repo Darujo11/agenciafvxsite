@@ -1,0 +1,10 @@
+{
+  "titulo": "Reuniões que vendem",
+  "cliente": "Infoproduto · Vendas B2B",
+  "servicosRelacionados": ["Landing pages"],
+  "descricao": "Página para especialista em vendas ensinar como conduzir reunião comercial com mais conversão.",
+  "imagem": "/projetos/base-lp04.jpg",
+  "link": "https://base-lp04.vercel.app/",
+  "destaque": false,
+  "publicadoEm": "2026-03-02"
+}

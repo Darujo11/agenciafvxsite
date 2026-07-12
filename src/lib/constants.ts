@@ -16,5 +16,6 @@ export const ANCORAS = [
   { href: "/#servicos", label: "Serviços" },
   { href: "/#como-trabalhamos", label: "Como trabalhamos" },
   { href: "/#projetos", label: "Projetos" },
+  { href: "/#sobre", label: "Sobre" },
   { href: "/#contato", label: "Contato" },
 ] as const;

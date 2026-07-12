@@ -5,16 +5,24 @@ interface Props {
   class?: string;
   target?: "_blank";
   ariaLabel?: string;
+  "data-reveal"?: boolean;
 }
 
-const { href, variant = "primary", class: className = "", target, ariaLabel } = Astro.props;
+const {
+  href,
+  variant = "primary",
+  class: className = "",
+  target,
+  ariaLabel,
+  "data-reveal": dataReveal,
+} = Astro.props;
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-2 focus-visible:outline-offset-2";
+  "relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-2 focus-visible:outline-offset-2";
 
 const variants = {
   primary:
-    "bg-accent text-bg hover:bg-accent-soft hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_var(--color-accent)]",
+    "btn-shine bg-accent text-bg hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_var(--color-accent)]",
   secondary: "border border-border text-text hover:border-accent hover:text-accent",
   ghost: "text-text-muted hover:text-text",
 };
@@ -29,7 +37,28 @@ const Tag = href ? "a" : "button";
   rel={rel}
   aria-label={ariaLabel}
   type={href ? undefined : "button"}
+  data-reveal={dataReveal ? true : undefined}
   class:list={[base, variants[variant], className]}
 >
   <slot />
 </Tag>
+
+<style>
+  .btn-shine::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    transform: rotate(20deg);
+    transition: left 0.7s ease-in-out;
+    pointer-events: none;
+  }
+
+  .btn-shine:hover::before,
+  .btn-shine:focus-visible::before {
+    left: 120%;
+  }
+</style>

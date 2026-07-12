@@ -34,7 +34,7 @@ const jsonLd = {
   sameAs: [INSTAGRAM_URL],
   areaServed: "BR",
   description:
-    "Agência digital full-stack: sites, landing pages, apps personalizados, gestão de tráfego, automações e agentes de IA.",
+    "Agência digital full-stack: sites, landing pages, apps personalizados, gestão de tráfego, automações, agentes de IA e consultoria de IA.",
 };
 ---
 
@@ -84,5 +84,10 @@ const jsonLd = {
       )
     }
     {!chrome && <slot />}
+
+    <script>
+      import { initScrollReveal } from "@/lib/scroll-reveal";
+      initScrollReveal();
+    </script>
   </body>
 </html>

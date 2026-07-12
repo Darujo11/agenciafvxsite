@@ -24,13 +24,13 @@ Termos canônicos do domínio — usar exatamente estes nomes em código, copy e
 
 | Termo (código) | Nome na interface                    | Definição                                                                                       |
 | -------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| `servico`      | Serviço                              | Uma das 6 ofertas da agência (lista fechada abaixo)                                             |
+| `servico`      | Serviço                              | Uma das 7 ofertas da agência (lista fechada abaixo)                                             |
 | `lead`         | —                                    | Visitante que clicou em um CTA de contato                                                       |
 | `cta-whatsapp` | "Fale com a gente" / "Começar agora" | Link para o WhatsApp com mensagem pré-preenchida                                                |
 | `case`         | Projeto                              | Trabalho entregue, exibido como prova social                                                    |
 | `processo`     | Como trabalhamos                     | As etapas do trabalho da agência (diagnóstico → proposta → execução → entrega → acompanhamento) |
 
-### Os 6 serviços (lista fechada, nesta ordem)
+### Os 7 serviços (lista fechada, nesta ordem)
 
 1. **Sites institucionais** — presença digital profissional que gera autoridade e confiança.
 2. **Landing pages** — páginas de alta conversão para campanhas, lançamentos e captura de leads.
@@ -38,6 +38,7 @@ Termos canônicos do domínio — usar exatamente estes nomes em código, copy e
 4. **Gestão de tráfego** — campanhas pagas (Meta Ads, Google Ads) com foco em retorno mensurável.
 5. **Automações** — integração de ferramentas e eliminação de trabalho manual repetitivo.
 6. **Chatbots e agentes inteligentes** — atendimento e vendas 24/7 com IA (chatbot estruturado e agente de IA conversacional).
+7. **Consultoria de IA** — diagnóstico da operação do cliente e plano de implementação de IA, sem depender de outro serviço da lista pra existir.
 
 > Chatbot e agente inteligente são apresentados como **um serviço com dois níveis** (estruturado vs. IA generativa), não como dois cards separados — evita canibalização e confusão na oferta.
 

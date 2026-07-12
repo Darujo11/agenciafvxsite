@@ -3,5 +3,7 @@
   "nome": "Automações",
   "resumo": "O trabalho repetitivo, a gente entrega pras máquinas. Seu tempo volta pra onde importa.",
   "icone": "automacao",
-  "whatsappMensagem": "Olá! Quero falar sobre automações para o meu negócio."
+  "whatsappMensagem": "Olá! Quero falar sobre automações para o meu negócio.",
+  "video": "/videos/servicos/automacoes.mp4",
+  "videoPoster": "/videos/servicos/automacoes-poster.jpg"
 }

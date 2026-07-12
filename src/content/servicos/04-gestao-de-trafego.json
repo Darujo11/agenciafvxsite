@@ -1,7 +1,9 @@
 {
   "ordem": 4,
   "nome": "Gestão de tráfego",
-  "resumo": "Anúncio bom é anúncio que dá retorno. Campanhas no Google e no Instagram com resultado medido de verdade.",
+  "resumo": "Anúncio bom é anúncio que dá retorno. Campanhas no Google e no Instagram, com número pra provar.",
   "icone": "trafego",
-  "whatsappMensagem": "Olá! Quero falar sobre gestão de tráfego."
+  "whatsappMensagem": "Olá! Quero falar sobre gestão de tráfego.",
+  "video": "/videos/servicos/gestao-de-trafego.mp4",
+  "videoPoster": "/videos/servicos/gestao-de-trafego-poster.jpg"
 }

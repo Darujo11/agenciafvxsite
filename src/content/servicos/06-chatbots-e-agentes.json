@@ -3,5 +3,7 @@
   "nome": "Chatbots e agentes inteligentes",
   "resumo": "Atendimento que não dorme. Do chatbot que organiza ao agente de IA que conversa, qualifica e vende.",
   "icone": "chatbot",
-  "whatsappMensagem": "Olá! Quero falar sobre um chatbot ou agente de IA para o meu negócio."
+  "whatsappMensagem": "Olá! Quero falar sobre um chatbot ou agente de IA para o meu negócio.",
+  "video": "/videos/servicos/chatbots-e-agentes.mp4",
+  "videoPoster": "/videos/servicos/chatbots-e-agentes-poster.jpg"
 }

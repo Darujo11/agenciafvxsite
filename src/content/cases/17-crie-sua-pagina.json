@@ -1,0 +1,10 @@
+{
+  "titulo": "Crie sua página de vendas em 2 horas",
+  "cliente": "Ferramenta · Criadores",
+  "servicosRelacionados": ["Landing pages"],
+  "descricao": "Página que vende o próprio serviço de criação rápida de landing pages.",
+  "imagem": "/projetos/base-lp25.jpg",
+  "link": "https://base-lp25.vercel.app/",
+  "destaque": false,
+  "publicadoEm": "2026-01-28"
+}

@@ -7,20 +7,37 @@ import { buildWhatsappUrl } from "@/lib/constants";
 
 <section id="contato" class="relative flex min-h-[70vh] items-center overflow-hidden py-24">
   <div
+    class="pointer-events-none absolute inset-x-0 bottom-0 -z-20 h-[40rem] opacity-[0.16] mix-blend-screen"
+    aria-hidden="true"
+  >
+    <img
+      src="/backgrounds/grid-tech.jpg"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="h-full w-full object-cover object-bottom"
+    />
+  </div>
+  <div
     class="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[40rem] bg-[radial-gradient(ellipse_60%_60%_at_50%_100%,rgba(6,182,196,0.18),transparent)]"
     aria-hidden="true"
   >
   </div>
 
-  <Container class="flex flex-col items-center text-center">
-    <h2 class="font-display text-text text-4xl text-balance lg:text-5xl">
+  <Container class="flex flex-col items-center text-center" data-reveal-group>
+    <h2 class="font-display text-text text-4xl text-balance lg:text-5xl" data-reveal>
       Pronto pra tirar seu projeto do papel?
     </h2>
-    <p class="text-text-muted mt-6 max-w-lg">
-      Manda uma mensagem agora e a gente já começa a conversa sobre o seu projeto.
+    <p class="text-text-muted mt-6 max-w-lg" data-reveal>
+      Manda uma mensagem no WhatsApp — a gente responde na hora e já começa o papo.
     </p>
-    <Button href={buildWhatsappUrl()} target="_blank" class="mt-10 px-10 py-4 text-base">
-      Começar agora
+    <Button
+      href={buildWhatsappUrl()}
+      target="_blank"
+      class="mt-10 px-10 py-4 text-base"
+      data-reveal
+    >
+      Chamar no WhatsApp
       <Icon name="whatsapp" class="h-5 w-5" />
     </Button>
   </Container>

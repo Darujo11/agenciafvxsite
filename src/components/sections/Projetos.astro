@@ -1,23 +1,37 @@
 ---
 import { getCollection } from "astro:content";
 import Section from "@/components/Section.astro";
-import Card from "@/components/Card.astro";
 import Button from "@/components/Button.astro";
+import Icon from "@/components/Icon.astro";
 import { buildWhatsappUrl } from "@/lib/constants";
 
 const cases = (await getCollection("cases")).sort(
   (a, b) => b.data.publicadoEm.valueOf() - a.data.publicadoEm.valueOf(),
 );
+
+const vitrine = cases.slice(0, 6).map((c) => ({
+  ...c,
+  hostname: c.data.link ? new URL(c.data.link).hostname.replace(/^www\./, "") : null,
+}));
+
+const temMais = cases.length > vitrine.length;
 ---
 
 <Section id="projetos">
-  <div class="mx-auto max-w-2xl text-center">
+  <div class="mx-auto max-w-2xl text-center" data-reveal>
     <h2 class="font-display text-text text-3xl lg:text-4xl">Projetos</h2>
+    <p class="text-text-muted mt-4">
+      Uma amostra do que já colocamos no ar. Clique em qualquer card pra ver ao vivo — sem
+      screenshot photoshopado.
+    </p>
   </div>
 
   {
-    cases.length === 0 ? (
-      <div class="border-border mx-auto mt-16 flex max-w-xl flex-col items-center gap-6 rounded-2xl border border-dashed px-8 py-16 text-center">
+    vitrine.length === 0 ? (
+      <div
+        class="border-border mx-auto mt-16 flex max-w-xl flex-col items-center gap-6 rounded-2xl border border-dashed px-8 py-16 text-center"
+        data-reveal
+      >
         <p class="font-display text-text text-xl">Portfólio em curadoria.</p>
         <p class="text-text-muted text-sm">
           Estamos organizando os cases mais recentes. Peça exemplos direto no WhatsApp.
@@ -30,14 +44,73 @@ const cases = (await getCollection("cases")).sort(
         </Button>
       </div>
     ) : (
-      <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {cases.map((c) => (
-          <Card>
-            <p class="text-accent text-xs font-medium tracking-wide uppercase">{c.data.cliente}</p>
-            <h3 class="font-display text-text mt-2 text-xl">{c.data.titulo}</h3>
-            <p class="text-text-muted mt-3 text-sm leading-relaxed">{c.data.descricao}</p>
-          </Card>
-        ))}
+      <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+        {vitrine.map((c) => {
+          const Tag = c.data.link ? "a" : "div";
+          return (
+            <Tag
+              href={c.data.link}
+              target={c.data.link ? "_blank" : undefined}
+              rel={c.data.link ? "noopener noreferrer" : undefined}
+              data-reveal
+              class="group border-border bg-surface hover:border-accent/40 relative flex flex-col overflow-hidden rounded-2xl border transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-20px_rgba(6,182,196,0.35)]"
+            >
+              <div class="relative overflow-hidden">
+                <div class="border-border bg-surface-raised flex items-center gap-1.5 border-b px-4 py-2.5">
+                  <span class="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  <span class="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  <span class="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  {c.hostname && (
+                    <span class="text-text-muted bg-bg/60 ml-2 truncate rounded-full px-3 py-1 text-[11px]">
+                      {c.hostname}
+                    </span>
+                  )}
+                </div>
+                <div class="overflow-hidden">
+                  <img
+                    src={c.data.imagem}
+                    alt={`Prévia do projeto ${c.data.titulo}`}
+                    loading="lazy"
+                    decoding="async"
+                    width="1080"
+                    height="720"
+                    class="aspect-[3/2] w-full object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+                  />
+                </div>
+                {c.data.link && (
+                  <div class="bg-bg/0 group-hover:bg-bg/40 pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
+                    <span class="bg-text text-bg inline-flex translate-y-2 items-center gap-1.5 rounded-full px-4 py-2 text-xs font-medium transition-transform duration-300 group-hover:translate-y-0">
+                      Ver ao vivo
+                      <Icon name="external-link" class="h-3.5 w-3.5" />
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="text-accent text-xs font-medium tracking-wide uppercase">
+                  {c.data.cliente}
+                </p>
+                <h3 class="font-display text-text mt-2 text-lg">{c.data.titulo}</h3>
+                <p class="text-text-muted mt-2 text-sm leading-relaxed">{c.data.descricao}</p>
+              </div>
+            </Tag>
+          );
+        })}
+      </div>
+    )
+  }
+
+  {
+    temMais && (
+      <div class="mt-12 flex justify-center" data-reveal>
+        <Button
+          href={buildWhatsappUrl("Olá! Quero ver mais projetos da agenciaFVX.")}
+          target="_blank"
+          variant="secondary"
+        >
+          Ver mais projetos
+          <Icon name="arrow-right" class="h-3.5 w-3.5" />
+        </Button>
       </div>
     )
   }

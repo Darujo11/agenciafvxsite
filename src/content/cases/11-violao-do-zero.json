@@ -1,0 +1,10 @@
+{
+  "titulo": "Violão do zero",
+  "cliente": "Educação · Música",
+  "servicosRelacionados": ["Landing pages"],
+  "descricao": "Página de curso de violão com método direto ao ponto pra quem nunca tocou.",
+  "imagem": "/projetos/base-lp16.jpg",
+  "link": "https://base-lp16.vercel.app/",
+  "destaque": false,
+  "publicadoEm": "2026-03-18"
+}

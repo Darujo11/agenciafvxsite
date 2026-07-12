@@ -5,8 +5,10 @@ export type IconName =
   | "trafego"
   | "automacao"
   | "chatbot"
+  | "consultoria"
   | "whatsapp"
   | "instagram"
   | "arrow-right"
+  | "external-link"
   | "menu"
   | "close";

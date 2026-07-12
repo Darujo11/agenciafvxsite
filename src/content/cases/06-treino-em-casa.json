@@ -1,0 +1,10 @@
+{
+  "titulo": "Treino em casa guiado",
+  "cliente": "Fitness",
+  "servicosRelacionados": ["Landing pages"],
+  "descricao": "Landing page para treino acompanhado sem depender de academia, com foco em consistência.",
+  "imagem": "/projetos/base-lp10.jpg",
+  "link": "https://base-lp10.vercel.app/",
+  "destaque": false,
+  "publicadoEm": "2026-03-25"
+}

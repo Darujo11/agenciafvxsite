@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+import Section from "@/components/Section.astro";
+import Icon from "@/components/Icon.astro";
+import fabioPhoto from "@/assets/team/fabio-ventura.jpg";
+import { buildWhatsappUrl } from "@/lib/constants";
+
+const credenciais = [
+  "Administração — formado",
+  "Ciências Contábeis — em formação",
+  "6 anos em marketing",
+  "Foco atual: IA aplicada a negócios",
+];
+---
+
+<Section id="sobre">
+  <div class="grid items-center gap-14 lg:grid-cols-2 lg:gap-20" data-reveal-group>
+    <div class="order-last lg:order-first" data-reveal>
+      <p class="text-accent text-xs font-medium tracking-widest uppercase">
+        Fundador da agenciaFVX
+      </p>
+      <h2 class="font-display text-text mt-4 text-3xl lg:text-4xl">Quem sou eu</h2>
+
+      <p class="font-display text-text mt-6 text-xl lg:text-2xl">
+        Sou Fábio Ventura, fundador da agenciaFVX.
+      </p>
+
+      <div class="text-text-muted mt-5 max-w-lg space-y-4 text-base leading-relaxed">
+        <p>
+          Formado em Administração e formando em Ciências Contábeis, entendo negócio antes de
+          entender código. Passei os últimos 6 anos dentro de marketing — testando estratégia,
+          campanha e processo até descobrir o que de fato vira venda.
+        </p>
+        <p>
+          Hoje esse trabalho tem um foco: inteligência artificial aplicada a empresas reais.
+          Automação, agente de IA, tráfego e produto — tudo pensado pra um único resultado: seu
+          negócio vendendo mais.
+        </p>
+        <p>
+          Nas horas vagas, sou enxadrista. E trato os projetos dos meus clientes do mesmo jeito
+          que trato um tabuleiro: sem jogada por acaso.
+        </p>
+      </div>
+
+      <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+        {
+          credenciais.map((item) => (
+            <li class="text-text-muted flex items-center gap-2 text-sm">
+              <span class="bg-accent h-1.5 w-1.5 shrink-0 rounded-full" aria-hidden="true" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <a
+        href={buildWhatsappUrl("Olá! Vi a página sobre o Fábio e quero falar sobre um projeto.")}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-accent hover:text-accent-soft mt-8 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
+      >
+        Falar com o Fábio no WhatsApp
+        <Icon name="arrow-right" class="h-3.5 w-3.5" />
+      </a>
+    </div>
+
+    <div class="relative order-first lg:order-last" data-reveal>
+      <div
+        class="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] bg-[radial-gradient(circle_at_50%_40%,rgba(6,182,196,0.18),transparent_70%)]"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="border-border bg-surface mx-auto max-w-sm overflow-hidden rounded-3xl border shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]"
+      >
+        <Image
+          src={fabioPhoto}
+          alt="Fábio Ventura, fundador da agenciaFVX, jogando xadrez"
+          width={820}
+          height={976}
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</Section>
