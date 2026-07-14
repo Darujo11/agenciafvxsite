@@ -2,7 +2,10 @@
 import Container from "@/components/Container.astro";
 import Button from "@/components/Button.astro";
 import Icon from "@/components/Icon.astro";
+import GooeyText from "@/components/GooeyText";
 import { buildWhatsappUrl } from "@/lib/constants";
+
+const heroVerbos = ["venda mais", "cresça mais", "converta mais", "fature mais"];
 ---
 
 <section id="top" class="relative isolate overflow-hidden pt-40 pb-28 lg:pt-52 lg:pb-36">
@@ -41,7 +44,8 @@ import { buildWhatsappUrl } from "@/lib/constants";
     <h1
       class="animate-fade-up font-display text-hero text-text max-w-4xl leading-[1.05] tracking-tight text-balance"
     >
-      Posicione sua empresa online e venda mais.
+      Posicione sua empresa online e
+      <GooeyText client:load texts={heroVerbos} textClassName="text-accent" />.
     </h1>
 
     <p
