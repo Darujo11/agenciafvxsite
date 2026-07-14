@@ -1,0 +1,11 @@
+{
+  "titulo": "App de gestão de obra em tempo real",
+  "cliente": "Engenharia",
+  "servicosRelacionados": ["Landing pages"],
+  "descricao": "Página de vendas para aplicativo de gestão de obras, com dashboard financeiro e por etapa direto no celular.",
+  "imagem": "/projetos/obra-facil-poster.jpg",
+  "video": "/projetos/obra-facil.mp4",
+  "link": "https://pv1.appobrafacil.com.br/",
+  "destaque": true,
+  "publicadoEm": "2026-07-14"
+}

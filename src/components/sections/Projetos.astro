@@ -9,10 +9,14 @@ const cases = (await getCollection("cases")).sort(
   (a, b) => b.data.publicadoEm.valueOf() - a.data.publicadoEm.valueOf(),
 );
 
-const vitrine = cases.slice(0, 6).map((c) => ({
-  ...c,
-  hostname: c.data.link ? new URL(c.data.link).hostname.replace(/^www\./, "") : null,
-}));
+const vitrine = cases.slice(0, 6).map((c) => {
+  const hostname = c.data.link ? new URL(c.data.link).hostname.replace(/^www\./, "") : null;
+  const isPlaceholder = hostname?.endsWith(".vercel.app") ?? false;
+  return {
+    ...c,
+    badge: isPlaceholder ? c.data.cliente : hostname,
+  };
+});
 
 const temMais = cases.length > vitrine.length;
 ---
@@ -60,22 +64,35 @@ const temMais = cases.length > vitrine.length;
                   <span class="h-2.5 w-2.5 rounded-full bg-white/15" />
                   <span class="h-2.5 w-2.5 rounded-full bg-white/15" />
                   <span class="h-2.5 w-2.5 rounded-full bg-white/15" />
-                  {c.hostname && (
+                  {c.badge && (
                     <span class="text-text-muted bg-bg/60 ml-2 truncate rounded-full px-3 py-1 text-[11px]">
-                      {c.hostname}
+                      {c.badge}
                     </span>
                   )}
                 </div>
                 <div class="overflow-hidden">
-                  <img
-                    src={c.data.imagem}
-                    alt={`Prévia do projeto ${c.data.titulo}`}
-                    loading="lazy"
-                    decoding="async"
-                    width="1080"
-                    height="720"
-                    class="aspect-[3/2] w-full object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
-                  />
+                  {c.data.video ? (
+                    <video
+                      class="aspect-[3/2] w-full object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+                      poster={c.data.imagem}
+                      muted
+                      loop
+                      playsinline
+                      preload="none"
+                      data-case-video
+                      data-src={c.data.video}
+                    />
+                  ) : (
+                    <img
+                      src={c.data.imagem}
+                      alt={`Prévia do projeto ${c.data.titulo}`}
+                      loading="lazy"
+                      decoding="async"
+                      width="1080"
+                      height="720"
+                      class="aspect-[3/2] w-full object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+                    />
+                  )}
                 </div>
                 {c.data.link && (
                   <div class="bg-bg/0 group-hover:bg-bg/40 pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
@@ -115,3 +132,55 @@ const temMais = cases.length > vitrine.length;
     )
   }
 </Section>
+
+<script>
+  const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const conn = (
+    navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }
+  ).connection;
+  const connectionOK = !conn?.saveData && !["slow-2g", "2g"].includes(conn?.effectiveType ?? "");
+
+  if (motionOK && connectionOK) {
+    const videos = document.querySelectorAll<HTMLVideoElement>("[data-case-video]");
+
+    const loadSource = (video: HTMLVideoElement) => {
+      if (video.dataset.loaded) return;
+      const src = video.dataset.src;
+      if (!src) return;
+      const source = document.createElement("source");
+      source.src = src;
+      source.type = "video/mp4";
+      video.appendChild(source);
+      video.load();
+      video.dataset.loaded = "true";
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const video = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) {
+            loadSource(video);
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        }
+      },
+      { threshold: 0.35 }
+    );
+
+    videos.forEach((video) => observer.observe(video));
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        videos.forEach((video) => video.pause());
+      } else {
+        videos.forEach((video) => {
+          const rect = video.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) video.play().catch(() => {});
+        });
+      }
+    });
+  }
+</script>

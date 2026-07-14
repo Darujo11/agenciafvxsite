@@ -22,6 +22,7 @@ const cases = defineCollection({
     servicosRelacionados: z.array(z.string()),
     descricao: z.string(),
     imagem: z.string(),
+    video: z.string().optional(),
     link: z.string().url().optional(),
     destaque: z.boolean().default(false),
     publicadoEm: z.coerce.date(),
